@@ -1,17 +1,18 @@
 import streamlit as st
 import pandas as pd
 import sqlite3
-import openai
+from openai import OpenAI  # NEW
 import matplotlib.pyplot as plt
 
-# Groq API
-openai.api_key = "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"
-openai.api_base = "https://api.groq.com/openai/v1"
+# ---------- Set up Groq API with new client ----------
+client = OpenAI(
+    api_key="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",
+    base_url="https://api.groq.com/openai/v1"
+)
 
-
-# App Layout
+# ---------- App Layout ----------
 st.set_page_config(page_title="SQL Chatbot", layout="wide")
-st.title("Data Analytics Chatbot ")
+st.title("Data Analytics Chatbot")
 
 uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
 
@@ -24,44 +25,44 @@ if uploaded_file:
     conn = sqlite3.connect(":memory:")
     df.to_sql("my_table", conn, index=False, if_exists='replace')
 
-    # Get user question
+    # ---------- Question Form ----------
     with st.form("question_form"):
         user_question = st.text_input("Ask a question about your data:")
 
         col1, col2 = st.columns([1, 15])
         with col1:
-                reset = st.form_submit_button("Reset")
+            reset = st.form_submit_button("Reset")
         with col2:
-                submitted = st.form_submit_button("Submit")
+            submitted = st.form_submit_button("Submit")
 
     if reset:
         st.session_state.clear()
         st.rerun()
 
     if submitted and user_question:
-        # the prompt
         schema = ", ".join(df.columns)
         prompt = f"""You are an expert data analyst.
-                        Generate an SQL query (SQLite syntax only) for the question:
-                        '{user_question}'
-                        Table name is: my_table
-                        Columns are: {schema}
-                        Only return valid SQL query. No explanation or markdown.
-                        """
+Generate an SQL query (SQLite syntax only) for the question:
+'{user_question}'
+Table name is: my_table
+Columns are: {schema}
+Only return valid SQL query. No explanation or markdown.
+"""
 
         with st.spinner("Generating SQL with Groq..."):
             try:
-                response = openai.ChatCompletion.create(
+                # ✅ NEW SYNTAX with client.chat.completions.create
+                response = client.chat.completions.create(
                     model="llama3-8b-8192",
                     messages=[{"role": "user", "content": prompt}]
                 )
-                sql_query = response['choices'][0]['message']['content'].strip().strip("`").strip()
+                sql_query = response.choices[0].message.content.strip()
                 st.code(sql_query, language="sql")
 
                 # Allow user to edit SQL before running
                 edited_query = st.text_area("Edit SQL query before execution (optional):", value=sql_query, height=300)
 
-                # Run the edited SQL
+                # Run the SQL
                 try:
                     result = pd.read_sql_query(edited_query, conn)
                     st.subheader("Query Output")
@@ -84,7 +85,6 @@ if uploaded_file:
                             x_col = result.columns[0]
                             y_col = result.columns[1]
 
-                            # Check if y is numeric
                             if not pd.api.types.is_numeric_dtype(result[y_col]):
                                 st.warning(f"Cannot plot because '{y_col}' is not numeric.")
                             elif plot_type == "scatter" and not pd.api.types.is_numeric_dtype(result[x_col]):
@@ -104,7 +104,6 @@ if uploaded_file:
 
                                 except Exception as plot_err:
                                     st.error(f"Plotting Error: {plot_err}")
-
 
                 except Exception as sql_error:
                     st.error(f"SQL Execution Error: {sql_error}")
