@@ -34,10 +34,16 @@ View results as interactive tables and visualizations
 
 
 
-🛠️ Tech Stack
+🛠️ Tech Stack :
+
 Python
+
 Streamlit
+
 Pandas
+
 SQLite
+
 Matplotlib
+
 OpenAI API (via Groq, LLaMA-3 model)
