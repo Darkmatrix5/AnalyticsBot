@@ -1,2 +1,24 @@
-# IPR-TPR-Multiphase
-This project analyzes IPR and TPR curves using the Poettmann and Carpenter method to evaluate multi-phase flow in vertical wells. Various tubing diameters were analyzed to identify the optimal size by determining the operating point where the curves intersect. Includes parameter calculations, pressure loss evaluation, and curve plotting.
+# Data Analytics Bot
+An interactive chatbot-powered data analytics tool built with Streamlit that allows users to:
+Upload CSV datasets
+Ask natural language questions
+Get AI-generated SQL queries using LLaMA-3 via Groq
+Edit and run the queries
+View results as interactive tables and visualizations
+
+🚀 Features
+✅ Upload and preview CSV data
+✅ Ask questions in plain English
+✅ Automatically generated SQL (SQLite syntax)
+✅ Option to manually edit SQL before running
+✅ View results as tables
+✅ Visualize results with selectable chart types
+✅ Responsive and clean Streamlit UI
+
+🛠️ Tech Stack
+Python
+Streamlit
+Pandas
+SQLite
+Matplotlib
+OpenAI API (via Groq, LLaMA-3 model)
