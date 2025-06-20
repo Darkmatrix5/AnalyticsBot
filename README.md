@@ -10,9 +10,10 @@ Edit and run the queries
 
 View results as interactive tables and visualizations
 
-Choose different chart types (bar, line, area, etc.)
+
 
 🚀 Features
+
 ✅ Upload and preview CSV data
 
 ✅ Ask questions in plain English
@@ -28,6 +29,7 @@ Choose different chart types (bar, line, area, etc.)
 ✅ Responsive and clean Streamlit UI
 
 🛠️ Tech Stack
+
 Python
 
 Streamlit
