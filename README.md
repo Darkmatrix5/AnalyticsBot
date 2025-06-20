@@ -13,7 +13,10 @@ Edit and run the queries
 View results as interactive tables and visualizations
 
 
+
+
 🚀 Features
+
 ✅ Upload and preview CSV data
 
 ✅ Ask questions in plain English
@@ -27,6 +30,8 @@ View results as interactive tables and visualizations
 ✅ Visualize results with selectable chart types
 
 ✅ Responsive and clean Streamlit UI
+
+
 
 
 🛠️ Tech Stack
