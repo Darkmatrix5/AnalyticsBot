@@ -28,16 +28,6 @@ View results as interactive tables and visualizations
 
 ✅ Responsive and clean Streamlit UI
 
-🛠️ Tech Stack
+🛠️ Tech Stack : Python, Streamlit, Pandas, SQLite, Matplotlib, OpenAI API (via Groq, LLaMA-3 model)
 
-Python
-
-Streamlit
-
-Pandas
-
-SQLite
-
-Matplotlib
-
-OpenAI API (via Groq, LLaMA-3 model)
+Link - https://analyticsbot.streamlit.app/
