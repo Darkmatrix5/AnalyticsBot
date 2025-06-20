@@ -1,5 +1,3 @@
-# Data Analytics Bot
-
 An interactive chatbot-powered data analytics tool built with Streamlit that allows users to:
 
 Upload CSV datasets
@@ -12,11 +10,9 @@ Edit and run the queries
 
 View results as interactive tables and visualizations
 
-
-
+Choose different chart types (bar, line, area, etc.)
 
 🚀 Features
-
 ✅ Upload and preview CSV data
 
 ✅ Ask questions in plain English
@@ -31,11 +27,7 @@ View results as interactive tables and visualizations
 
 ✅ Responsive and clean Streamlit UI
 
-
-
-
-🛠️ Tech Stack :
-
+🛠️ Tech Stack
 Python
 
 Streamlit
